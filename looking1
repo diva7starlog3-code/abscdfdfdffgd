@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Simulator Sistem Lampu Motor</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>🏍️ SISTEM LAMPU MOTOR</h1>
+
+    <p class="subtitle">
+      Simulator wiring + kontrol LED sequential
+    </p>
+
+
+    <!-- ========================= -->
+    <!-- BAGAN SISTEM -->
+    <!-- ========================= -->
+
+    <section class="diagram">
+
+      <h2>⚡ BAGAN SISTEM</h2>
+
+      <div class="flow">
+
+        <div class="component battery">
+          <div class="icon">🔋</div>
+          <strong>AKI 12V</strong>
+          <small>Power motor</small>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="component fuse">
+          <div class="icon">🛡️</div>
+          <strong>SEKERING</strong>
+          <small>10A Protection</small>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="component buck">
+          <div class="icon">⚡</div>
+          <strong>BUCK</strong>
+          <small>12V → 5V</small>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="component arduino">
+          <div class="icon">🧠</div>
+          <strong>ARDUINO</strong>
+          <small>Controller</small>
+        </div>
+
+      </div>
+
+
+      <div class="down-arrow">
+        ↓
+      </div>
+
+
+      <div class="output-box">
+
+        <div class="component mosfet">
+          <div class="icon">🔌</div>
+          <strong>MOSFET DRIVER</strong>
+          <small>Penguat arus LED</small>
+        </div>
+
+        <div class="arrow">→</div>
+
+        <div class="lamp-output">
+
+          <strong>RUMAH LAMPU MOTOR</strong>
+
+          <div class="motor-lamp">
+
+            <!-- KIRI -->
+            <div class="lamp-side">
+
+              <span class="label">SEIN KIRI</span>
+
+              <div class="led-row">
+                <span class="led left1"></span>
+                <span class="led left2"></span>
+                <span class="led left3"></span>
+              </div>
+
+            </div>
+
+
+            <!-- TENGAH -->
+            <div class="lamp-center">
+
+              <span class="label">REM</span>
+
+              <div class="brake-row">
+                <span class="brake-led brake1"></span>
+                <span class="brake-led brake2"></span>
+                <span class="brake-led brake3"></span>
+                <span class="brake-led brake4"></span>
+                <span class="brake-led brake5"></span>
+              </div>
+
+            </div>
+
+
+            <!-- KANAN -->
+            <div class="lamp-side">
+
+              <span class="label">SEIN KANAN</span>
+
+              <div class="led-row">
+                <span class="led right1"></span>
+                <span class="led right2"></span>
+                <span class="led right3"></span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- KONTROL -->
+    <!-- ========================= -->
+
+    <section class="control">
+
+      <h2>🎮 KONTROL LAMPU</h2>
+
+      <div class="buttons">
+
+        <button onclick="seinKiri()">
+          ← SEIN KIRI
+        </button>
+
+        <button onclick="hazard()">
+          ⚠ HAZARD
+        </button>
+
+        <button onclick="rem()">
+          🔴 REM
+        </button>
+
+        <button onclick="seinKanan()">
+          SEIN KANAN →
+        </button>
+
+        <button class="off" onclick="mati()">
+          ✕ MATI
+        </button>
+
+      </div>
+
+      <div class="status">
+
+        STATUS SISTEM :
+
+        <span id="status">
+          MATI
+        </span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ========================= -->
+    <!-- CARA KERJA -->
+    <!-- ========================= -->
+
+    <section class="info">
+
+      <h2>🔧 CARA KERJA</h2>
+
+      <div class="info-grid">
+
+        <div>
+          <b>1. AKI</b>
+          <p>
+            Memberikan tegangan 12V ke sistem lampu.
+          </p>
+        </div>
+
+        <div>
+          <b>2. BUCK CONVERTER</b>
+          <p>
+            Menurunkan tegangan menjadi 5V
+            untuk Arduino.
+          </p>
+        </div>
+
+        <div>
+          <b>3. ARDUINO</b>
+          <p>
+            Membaca input sein, hazard dan rem
+            kemudian menentukan LED yang menyala.
+          </p>
+        </div>
+
+        <div>
+          <b>4. MOSFET</b>
+          <p>
+            Mengontrol arus besar menuju LED.
+          </p>
+        </div>
+
+        <div>
+          <b>5. LED</b>
+          <p>
+            Menyala sesuai pola yang diperintahkan
+            Arduino.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer>
+      DIY MOTORCYCLE LIGHTING PROJECT 🏍️
+    </footer>
+
+  </div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
