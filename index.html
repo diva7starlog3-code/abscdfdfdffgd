@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulator Lampu Motor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>🏍️ SIMULATOR LAMPU MOTOR</h1>
+    <p class="subtitle">Tes pola lampu sebelum dipasang ke motor</p>
+
+    <!-- Lampu motor -->
+    <div class="motor-light">
+
+      <div class="side left">
+        <div class="lamp" id="left1"></div>
+        <div class="lamp" id="left2"></div>
+        <div class="lamp" id="left3"></div>
+      </div>
+
+      <div class="center">
+        <div class="lamp center-lamp" id="center"></div>
+      </div>
+
+      <div class="side right">
+        <div class="lamp" id="right1"></div>
+        <div class="lamp" id="right2"></div>
+        <div class="lamp" id="right3"></div>
+      </div>
+
+    </div>
+
+    <!-- Tombol -->
+    <div class="buttons">
+
+      <button onclick="seinKiri()">
+        ← SEIN KIRI
+      </button>
+
+      <button onclick="hazard()">
+        ⚠ HAZARD
+      </button>
+
+      <button onclick="rem()">
+        🔴 REM
+      </button>
+
+      <button onclick="seinKanan()">
+        SEIN KANAN →
+      </button>
+
+      <button class="off" onclick="mati()">
+        MATIKAN
+      </button>
+
+    </div>
+
+    <div class="status">
+      MODE: <span id="status">MATI</span>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
