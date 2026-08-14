@@ -1,249 +1,702 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Simulator Sistem Lampu Motor</title>
+<title>Diagram Lampu Motor</title>
 
-  <link rel="stylesheet" href="style.css">
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #080808;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 15px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+/* DIAGRAM */
+
+.diagram {
+    background: #111;
+    border: 2px solid #333;
+    border-radius: 20px;
+    padding: 30px;
+    overflow-x: auto;
+}
+
+.flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 850px;
+}
+
+.box {
+    min-width: 130px;
+    padding: 18px 10px;
+    text-align: center;
+
+    background: #202020;
+    border: 2px solid #555;
+
+    border-radius: 12px;
+}
+
+.box .icon {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.box small {
+    display: block;
+    color: #888;
+    margin-top: 5px;
+}
+
+.arrow {
+    font-size: 35px;
+    color: #666;
+}
+
+
+/* KABEL */
+
+.wire {
+    width: 70%;
+    height: 4px;
+    background: #444;
+    margin: 30px auto;
+    position: relative;
+}
+
+.wire.active {
+    background: #ffae00;
+    box-shadow: 0 0 15px #ffae00;
+}
+
+
+/* RUMAH LAMPU */
+
+.tail-light {
+    margin: 20px auto;
+
+    max-width: 850px;
+
+    background: #050505;
+
+    border: 5px solid #333;
+
+    border-radius: 100px 100px 45px 45px;
+
+    padding: 35px 50px;
+
+    box-shadow:
+        inset 0 0 40px #000,
+        0 0 20px #000;
+}
+
+
+/* BAGIAN LAMPU */
+
+.lights {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+}
+
+.side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.led {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #161616;
+
+    border: 3px solid #444;
+
+    transition: .15s;
+}
+
+.led.on {
+    background: #ffae00;
+
+    border-color: #ffd36b;
+
+    box-shadow:
+        0 0 10px #ffae00,
+        0 0 25px #ffae00,
+        0 0 45px #ffae00;
+
+    transform: scale(1.15);
+}
+
+
+/* REM */
+
+.brake {
+    width: 180px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.brake-led {
+    height: 18px;
+
+    background: #170000;
+
+    border: 2px solid #401010;
+
+    border-radius: 20px;
+}
+
+.brake-led.on {
+    background: red;
+
+    border-color: #ff7777;
+
+    box-shadow:
+        0 0 10px red,
+        0 0 25px red,
+        0 0 40px red;
+}
+
+
+/* LABEL */
+
+.label {
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+
+/* BUTTON */
+
+.controls {
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+button {
+    padding: 15px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #292929;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+button:hover {
+    background: #444;
+}
+
+button.off {
+    background: #661515;
+}
+
+
+/* STATUS */
+
+.status {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #888;
+}
+
+#status {
+    color: white;
+    font-weight: bold;
+}
+
+
+/* INFO */
+
+.info {
+    margin-top: 25px;
+
+    background: #151515;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    color: #aaa;
+
+    line-height: 1.6;
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <h1>🏍️ SISTEM LAMPU MOTOR</h1>
+<h1>🏍️ SISTEM LAMPU MOTOR</h1>
 
-    <p class="subtitle">
-      Simulator wiring + kontrol LED sequential
-    </p>
+<div class="subtitle">
+Diagram rangkaian & simulasi lampu
+</div>
 
 
-    <!-- ========================= -->
-    <!-- BAGAN SISTEM -->
-    <!-- ========================= -->
+<!-- ====================== -->
+<!-- BAGAN -->
+<!-- ====================== -->
 
-    <section class="diagram">
+<div class="diagram">
 
-      <h2>⚡ BAGAN SISTEM</h2>
+<h2>⚡ BAGAN RANGKAIAN</h2>
 
-      <div class="flow">
 
-        <div class="component battery">
-          <div class="icon">🔋</div>
-          <strong>AKI 12V</strong>
-          <small>Power motor</small>
-        </div>
+<div class="flow">
 
-        <div class="arrow">→</div>
 
-        <div class="component fuse">
-          <div class="icon">🛡️</div>
-          <strong>SEKERING</strong>
-          <small>10A Protection</small>
-        </div>
+<div class="box">
+    <div class="icon">🔋</div>
+    <b>AKI</b>
+    <small>12V</small>
+</div>
 
-        <div class="arrow">→</div>
 
-        <div class="component buck">
-          <div class="icon">⚡</div>
-          <strong>BUCK</strong>
-          <small>12V → 5V</small>
-        </div>
+<div class="arrow">→</div>
 
-        <div class="arrow">→</div>
 
-        <div class="component arduino">
-          <div class="icon">🧠</div>
-          <strong>ARDUINO</strong>
-          <small>Controller</small>
-        </div>
+<div class="box">
+    <div class="icon">🛡️</div>
+    <b>FUSE</b>
+    <small>10A</small>
+</div>
 
-      </div>
 
+<div class="arrow">→</div>
 
-      <div class="down-arrow">
-        ↓
-      </div>
 
+<div class="box">
+    <div class="icon">⚡</div>
+    <b>BUCK</b>
+    <small>12V → 5V</small>
+</div>
 
-      <div class="output-box">
 
-        <div class="component mosfet">
-          <div class="icon">🔌</div>
-          <strong>MOSFET DRIVER</strong>
-          <small>Penguat arus LED</small>
-        </div>
+<div class="arrow">→</div>
 
-        <div class="arrow">→</div>
 
-        <div class="lamp-output">
+<div class="box">
+    <div class="icon">🧠</div>
+    <b>ARDUINO</b>
+    <small>Controller</small>
+</div>
 
-          <strong>RUMAH LAMPU MOTOR</strong>
 
-          <div class="motor-lamp">
+</div>
 
-            <!-- KIRI -->
-            <div class="lamp-side">
 
-              <span class="label">SEIN KIRI</span>
+<div class="wire" id="mainWire"></div>
 
-              <div class="led-row">
-                <span class="led left1"></span>
-                <span class="led left2"></span>
-                <span class="led left3"></span>
-              </div>
 
-            </div>
+<div class="flow">
 
 
-            <!-- TENGAH -->
-            <div class="lamp-center">
+<div class="box">
+    <div class="icon">🔌</div>
+    <b>MOSFET KIRI</b>
+    <small>LED Driver</small>
+</div>
 
-              <span class="label">REM</span>
 
-              <div class="brake-row">
-                <span class="brake-led brake1"></span>
-                <span class="brake-led brake2"></span>
-                <span class="brake-led brake3"></span>
-                <span class="brake-led brake4"></span>
-                <span class="brake-led brake5"></span>
-              </div>
+<div class="arrow">→</div>
 
-            </div>
 
+<div class="box">
+    <div class="icon">🔌</div>
+    <b>MOSFET REM</b>
+    <small>LED Driver</small>
+</div>
 
-            <!-- KANAN -->
-            <div class="lamp-side">
 
-              <span class="label">SEIN KANAN</span>
+<div class="arrow">→</div>
 
-              <div class="led-row">
-                <span class="led right1"></span>
-                <span class="led right2"></span>
-                <span class="led right3"></span>
-              </div>
 
-            </div>
+<div class="box">
+    <div class="icon">🔌</div>
+    <b>MOSFET KANAN</b>
+    <small>LED Driver</small>
+</div>
 
-          </div>
 
-        </div>
+</div>
 
-      </div>
 
-    </section>
+<div class="wire"></div>
 
 
+<!-- ====================== -->
+<!-- RUMAH LAMPU -->
+<!-- ====================== -->
 
-    <!-- ========================= -->
-    <!-- KONTROL -->
-    <!-- ========================= -->
+<div class="tail-light">
 
-    <section class="control">
+<div class="label">
+    RUMAH LAMPU MOTOR
+</div>
 
-      <h2>🎮 KONTROL LAMPU</h2>
 
-      <div class="buttons">
+<div class="lights">
 
-        <button onclick="seinKiri()">
-          ← SEIN KIRI
-        </button>
 
-        <button onclick="hazard()">
-          ⚠ HAZARD
-        </button>
+<!-- KIRI -->
 
-        <button onclick="rem()">
-          🔴 REM
-        </button>
+<div>
 
-        <button onclick="seinKanan()">
-          SEIN KANAN →
-        </button>
+<div class="label">
+SEIN KIRI
+</div>
 
-        <button class="off" onclick="mati()">
-          ✕ MATI
-        </button>
+<div class="side">
 
-      </div>
+<span class="led left1"></span>
+<span class="led left2"></span>
+<span class="led left3"></span>
 
-      <div class="status">
+</div>
 
-        STATUS SISTEM :
+</div>
 
-        <span id="status">
-          MATI
-        </span>
 
-      </div>
+<!-- REM -->
 
-    </section>
+<div>
 
+<div class="label">
+REM
+</div>
 
+<div class="brake">
 
-    <!-- ========================= -->
-    <!-- CARA KERJA -->
-    <!-- ========================= -->
+<span class="brake-led"></span>
+<span class="brake-led"></span>
+<span class="brake-led"></span>
+<span class="brake-led"></span>
 
-    <section class="info">
+</div>
 
-      <h2>🔧 CARA KERJA</h2>
+</div>
 
-      <div class="info-grid">
 
-        <div>
-          <b>1. AKI</b>
-          <p>
-            Memberikan tegangan 12V ke sistem lampu.
-          </p>
-        </div>
+<!-- KANAN -->
 
-        <div>
-          <b>2. BUCK CONVERTER</b>
-          <p>
-            Menurunkan tegangan menjadi 5V
-            untuk Arduino.
-          </p>
-        </div>
+<div>
 
-        <div>
-          <b>3. ARDUINO</b>
-          <p>
-            Membaca input sein, hazard dan rem
-            kemudian menentukan LED yang menyala.
-          </p>
-        </div>
+<div class="label">
+SEIN KANAN
+</div>
 
-        <div>
-          <b>4. MOSFET</b>
-          <p>
-            Mengontrol arus besar menuju LED.
-          </p>
-        </div>
+<div class="side">
 
-        <div>
-          <b>5. LED</b>
-          <p>
-            Menyala sesuai pola yang diperintahkan
-            Arduino.
-          </p>
-        </div>
+<span class="led right1"></span>
+<span class="led right2"></span>
+<span class="led right3"></span>
 
-      </div>
+</div>
 
-    </section>
+</div>
 
 
-    <footer>
-      DIY MOTORCYCLE LIGHTING PROJECT 🏍️
-    </footer>
+</div>
 
-  </div>
+</div>
 
+</div>
 
-  <script src="script.js"></script>
+
+<!-- ====================== -->
+<!-- BUTTON -->
+<!-- ====================== -->
+
+<div class="controls">
+
+<button onclick="leftSignal()">
+← SEIN KIRI
+</button>
+
+<button onclick="hazard()">
+⚠ HAZARD
+</button>
+
+<button onclick="brake()">
+🔴 REM
+</button>
+
+<button onclick="rightSignal()">
+SEIN KANAN →
+</button>
+
+<button class="off" onclick="off()">
+✕ MATI
+</button>
+
+</div>
+
+
+<div class="status">
+
+STATUS:
+<span id="status">
+MATI
+</span>
+
+</div>
+
+
+<div class="info">
+
+<b>Alur sistem:</b>
+
+<br>
+
+🔋 AKI 12V
+→ 🛡️ Fuse
+→ ⚡ Buck Converter
+→ 🧠 Arduino
+→ 🔌 MOSFET
+→ 💡 LED
+
+<br><br>
+
+Arduino berfungsi sebagai pengontrol pola LED.
+MOSFET digunakan sebagai driver untuk mengontrol beban LED.
+
+</div>
+
+
+</div>
+
+
+<script>
+
+let timer = null;
+
+
+const left = document.querySelectorAll(".side:first-child .led");
+
+const right = document.querySelectorAll(".side:last-child .led");
+
+const brakeLED =
+document.querySelectorAll(".brake-led");
+
+const wire =
+document.getElementById("mainWire");
+
+const status =
+document.getElementById("status");
+
+
+function allOff() {
+
+    document.querySelectorAll(".led")
+        .forEach(x => x.classList.remove("on"));
+
+    brakeLED
+        .forEach(x => x.classList.remove("on"));
+
+    wire.classList.remove("active");
+}
+
+
+function off() {
+
+    clearInterval(timer);
+
+    allOff();
+
+    status.innerText = "MATI";
+}
+
+
+/* ======================
+   SEIN KIRI
+====================== */
+
+function leftSignal() {
+
+    clearInterval(timer);
+
+    let step = 0;
+
+    status.innerText =
+        "SEIN KIRI";
+
+    timer = setInterval(() => {
+
+        allOff();
+
+        wire.classList.add("active");
+
+        for (let i = 0; i <= step; i++) {
+
+            left[i].classList.add("on");
+
+        }
+
+        step++;
+
+        if (step >= 3) {
+
+            step = 0;
+
+        }
+
+    }, 200);
+
+}
+
+
+/* ======================
+   SEIN KANAN
+====================== */
+
+function rightSignal() {
+
+    clearInterval(timer);
+
+    let step = 0;
+
+    status.innerText =
+        "SEIN KANAN";
+
+    timer = setInterval(() => {
+
+        allOff();
+
+        wire.classList.add("active");
+
+        for (let i = 0; i <= step; i++) {
+
+            right[i].classList.add("on");
+
+        }
+
+        step++;
+
+        if (step >= 3) {
+
+            step = 0;
+
+        }
+
+    }, 200);
+
+}
+
+
+/* ======================
+   HAZARD
+====================== */
+
+function hazard() {
+
+    clearInterval(timer);
+
+    let state = false;
+
+    status.innerText =
+        "HAZARD";
+
+    timer = setInterval(() => {
+
+        allOff();
+
+        state = !state;
+
+        if (state) {
+
+            document
+                .querySelectorAll(".led")
+                .forEach(x =>
+                    x.classList.add("on")
+                );
+
+            wire.classList.add("active");
+
+        }
+
+    }, 450);
+
+}
+
+
+/* ======================
+   REM
+====================== */
+
+function brake() {
+
+    clearInterval(timer);
+
+    allOff();
+
+    status.innerText =
+        "REM";
+
+    brakeLED.forEach(x =>
+        x.classList.add("on")
+    );
+
+    wire.classList.add("active");
+
+}
+
+</script>
 
 </body>
 </html>
