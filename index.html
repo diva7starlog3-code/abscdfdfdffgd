@@ -1,553 +1,31 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Diagram Lampu Motor</title>
-
-<style>
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background: #080808;
-    color: white;
-    font-family: Arial, sans-serif;
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 30px 15px;
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 5px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #888;
-    margin-bottom: 30px;
-}
-
-/* DIAGRAM */
-
-.diagram {
-    background: #111;
-    border: 2px solid #333;
-    border-radius: 20px;
-    padding: 30px;
-    overflow-x: auto;
-}
-
-.flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    min-width: 850px;
-}
-
-.box {
-    min-width: 130px;
-    padding: 18px 10px;
-    text-align: center;
-
-    background: #202020;
-    border: 2px solid #555;
-
-    border-radius: 12px;
-}
-
-.box .icon {
-    font-size: 35px;
-    margin-bottom: 8px;
-}
-
-.box small {
-    display: block;
-    color: #888;
-    margin-top: 5px;
-}
-
-.arrow {
-    font-size: 35px;
-    color: #666;
-}
-
-
-/* KABEL */
-
-.wire {
-    width: 70%;
-    height: 4px;
-    background: #444;
-    margin: 30px auto;
-    position: relative;
-}
-
-.wire.active {
-    background: #ffae00;
-    box-shadow: 0 0 15px #ffae00;
-}
-
-
-/* RUMAH LAMPU */
-
-.tail-light {
-    margin: 20px auto;
-
-    max-width: 850px;
-
-    background: #050505;
-
-    border: 5px solid #333;
-
-    border-radius: 100px 100px 45px 45px;
-
-    padding: 35px 50px;
-
-    box-shadow:
-        inset 0 0 40px #000,
-        0 0 20px #000;
-}
-
-
-/* BAGIAN LAMPU */
-
-.lights {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 35px;
-}
-
-.side {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.led {
-    width: 45px;
-    height: 45px;
-
-    border-radius: 50%;
-
-    background: #161616;
-
-    border: 3px solid #444;
-
-    transition: .15s;
-}
-
-.led.on {
-    background: #ffae00;
-
-    border-color: #ffd36b;
-
-    box-shadow:
-        0 0 10px #ffae00,
-        0 0 25px #ffae00,
-        0 0 45px #ffae00;
-
-    transform: scale(1.15);
-}
-
-
-/* REM */
-
-.brake {
-    width: 180px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.brake-led {
-    height: 18px;
-
-    background: #170000;
-
-    border: 2px solid #401010;
-
-    border-radius: 20px;
-}
-
-.brake-led.on {
-    background: red;
-
-    border-color: #ff7777;
-
-    box-shadow:
-        0 0 10px red,
-        0 0 25px red,
-        0 0 40px red;
-}
-
-
-/* LABEL */
-
-.label {
-    text-align: center;
-    font-size: 11px;
-    color: #777;
-    margin-bottom: 10px;
-}
-
-
-/* BUTTON */
-
-.controls {
-    margin-top: 30px;
-
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 12px;
-}
-
-button {
-    padding: 15px 22px;
-
-    border: none;
-
-    border-radius: 10px;
-
-    background: #292929;
-
-    color: white;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-button:hover {
-    background: #444;
-}
-
-button.off {
-    background: #661515;
-}
-
-
-/* STATUS */
-
-.status {
-    text-align: center;
-
-    margin-top: 20px;
-
-    color: #888;
-}
-
-#status {
-    color: white;
-    font-weight: bold;
-}
-
-
-/* INFO */
-
-.info {
-    margin-top: 25px;
-
-    background: #151515;
-
-    border-radius: 15px;
-
-    padding: 20px;
-
-    color: #aaa;
-
-    line-height: 1.6;
-}
-
-</style>
-</head>
-
-
-<body>
-
-<div class="container">
-
-<h1>🏍️ SISTEM LAMPU MOTOR</h1>
-
-<div class="subtitle">
-Diagram rangkaian & simulasi lampu
-</div>
-
-
-<!-- ====================== -->
-<!-- BAGAN -->
-<!-- ====================== -->
-
-<div class="diagram">
-
-<h2>⚡ BAGAN RANGKAIAN</h2>
-
-
-<div class="flow">
-
-
-<div class="box">
-    <div class="icon">🔋</div>
-    <b>AKI</b>
-    <small>12V</small>
-</div>
-
-
-<div class="arrow">→</div>
-
-
-<div class="box">
-    <div class="icon">🛡️</div>
-    <b>FUSE</b>
-    <small>10A</small>
-</div>
-
-
-<div class="arrow">→</div>
-
-
-<div class="box">
-    <div class="icon">⚡</div>
-    <b>BUCK</b>
-    <small>12V → 5V</small>
-</div>
-
-
-<div class="arrow">→</div>
-
-
-<div class="box">
-    <div class="icon">🧠</div>
-    <b>ARDUINO</b>
-    <small>Controller</small>
-</div>
-
-
-</div>
-
-
-<div class="wire" id="mainWire"></div>
-
-
-<div class="flow">
-
-
-<div class="box">
-    <div class="icon">🔌</div>
-    <b>MOSFET KIRI</b>
-    <small>LED Driver</small>
-</div>
-
-
-<div class="arrow">→</div>
-
-
-<div class="box">
-    <div class="icon">🔌</div>
-    <b>MOSFET REM</b>
-    <small>LED Driver</small>
-</div>
-
-
-<div class="arrow">→</div>
-
-
-<div class="box">
-    <div class="icon">🔌</div>
-    <b>MOSFET KANAN</b>
-    <small>LED Driver</small>
-</div>
-
-
-</div>
-
-
-<div class="wire"></div>
-
-
-<!-- ====================== -->
-<!-- RUMAH LAMPU -->
-<!-- ====================== -->
-
-<div class="tail-light">
-
-<div class="label">
-    RUMAH LAMPU MOTOR
-</div>
-
-
-<div class="lights">
-
-
-<!-- KIRI -->
-
-<div>
-
-<div class="label">
-SEIN KIRI
-</div>
-
-<div class="side">
-
-<span class="led left1"></span>
-<span class="led left2"></span>
-<span class="led left3"></span>
-
-</div>
-
-</div>
-
-
-<!-- REM -->
-
-<div>
-
-<div class="label">
-REM
-</div>
-
-<div class="brake">
-
-<span class="brake-led"></span>
-<span class="brake-led"></span>
-<span class="brake-led"></span>
-<span class="brake-led"></span>
-
-</div>
-
-</div>
-
-
-<!-- KANAN -->
-
-<div>
-
-<div class="label">
-SEIN KANAN
-</div>
-
-<div class="side">
-
-<span class="led right1"></span>
-<span class="led right2"></span>
-<span class="led right3"></span>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ====================== -->
-<!-- BUTTON -->
-<!-- ====================== -->
-
-<div class="controls">
-
-<button onclick="leftSignal()">
-← SEIN KIRI
-</button>
-
-<button onclick="hazard()">
-⚠ HAZARD
-</button>
-
-<button onclick="brake()">
-🔴 REM
-</button>
-
-<button onclick="rightSignal()">
-SEIN KANAN →
-</button>
-
-<button class="off" onclick="off()">
-✕ MATI
-</button>
-
-</div>
-
-
-<div class="status">
-
-STATUS:
-<span id="status">
-MATI
-</span>
-
-</div>
-
-
-<div class="info">
-
-<b>Alur sistem:</b>
-
-<br>
-
-🔋 AKI 12V
-→ 🛡️ Fuse
-→ ⚡ Buck Converter
-→ 🧠 Arduino
-→ 🔌 MOSFET
-→ 💡 LED
-
-<br><br>
-
-Arduino berfungsi sebagai pengontrol pola LED.
-MOSFET digunakan sebagai driver untuk mengontrol beban LED.
-
-</div>
-
-
-</div>
-
-
 <script>
 
 let timer = null;
 
+const left = document.querySelectorAll(".lamp-side:first-child .led");
 
-const left = document.querySelectorAll(".side:first-child .led");
+const right = document.querySelectorAll(".lamp-side:last-child .led");
 
-const right = document.querySelectorAll(".side:last-child .led");
+const brakeLED = document.querySelectorAll(".brake-led");
 
-const brakeLED =
-document.querySelectorAll(".brake-led");
+const wire = document.getElementById("mainWire");
 
-const wire =
-document.getElementById("mainWire");
-
-const status =
-document.getElementById("status");
+const status = document.getElementById("status");
 
 
 function allOff() {
 
-    document.querySelectorAll(".led")
-        .forEach(x => x.classList.remove("on"));
+    left.forEach(led => {
+        led.classList.remove("on");
+    });
 
-    brakeLED
-        .forEach(x => x.classList.remove("on"));
+    right.forEach(led => {
+        led.classList.remove("on");
+    });
+
+    brakeLED.forEach(led => {
+        led.classList.remove("on");
+    });
 
     wire.classList.remove("active");
 }
@@ -563,18 +41,13 @@ function off() {
 }
 
 
-/* ======================
-   SEIN KIRI
-====================== */
-
 function leftSignal() {
 
     clearInterval(timer);
 
     let step = 0;
 
-    status.innerText =
-        "SEIN KIRI";
+    status.innerText = "SEIN KIRI";
 
     timer = setInterval(() => {
 
@@ -583,27 +56,18 @@ function leftSignal() {
         wire.classList.add("active");
 
         for (let i = 0; i <= step; i++) {
-
             left[i].classList.add("on");
-
         }
 
         step++;
 
-        if (step >= 3) {
-
+        if (step >= left.length) {
             step = 0;
-
         }
 
     }, 200);
-
 }
 
-
-/* ======================
-   SEIN KANAN
-====================== */
 
 function rightSignal() {
 
@@ -611,8 +75,7 @@ function rightSignal() {
 
     let step = 0;
 
-    status.innerText =
-        "SEIN KANAN";
+    status.innerText = "SEIN KANAN";
 
     timer = setInterval(() => {
 
@@ -621,27 +84,18 @@ function rightSignal() {
         wire.classList.add("active");
 
         for (let i = 0; i <= step; i++) {
-
             right[i].classList.add("on");
-
         }
 
         step++;
 
-        if (step >= 3) {
-
+        if (step >= right.length) {
             step = 0;
-
         }
 
     }, 200);
-
 }
 
-
-/* ======================
-   HAZARD
-====================== */
 
 function hazard() {
 
@@ -649,8 +103,7 @@ function hazard() {
 
     let state = false;
 
-    status.innerText =
-        "HAZARD";
+    status.innerText = "HAZARD";
 
     timer = setInterval(() => {
 
@@ -660,24 +113,20 @@ function hazard() {
 
         if (state) {
 
-            document
-                .querySelectorAll(".led")
-                .forEach(x =>
-                    x.classList.add("on")
-                );
+            left.forEach(led => {
+                led.classList.add("on");
+            });
+
+            right.forEach(led => {
+                led.classList.add("on");
+            });
 
             wire.classList.add("active");
-
         }
 
     }, 450);
-
 }
 
-
-/* ======================
-   REM
-====================== */
 
 function brake() {
 
@@ -685,18 +134,13 @@ function brake() {
 
     allOff();
 
-    status.innerText =
-        "REM";
+    status.innerText = "REM";
 
-    brakeLED.forEach(x =>
-        x.classList.add("on")
-    );
+    brakeLED.forEach(led => {
+        led.classList.add("on");
+    });
 
     wire.classList.add("active");
-
 }
 
 </script>
-
-</body>
-</html>
